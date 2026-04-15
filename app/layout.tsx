@@ -4,6 +4,7 @@ import "./globals.css";
 import { Raleway } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import AddToCartMobile from "@/components/AddToCart_Mobile";
 
 const RalewaySans = Raleway({
 	variable: "--font-Raleway-sans",
@@ -37,8 +38,12 @@ export default function RootLayout({
 					<Header />
 				</div>
 				{children}
-				<div className="">
+				<div className="hidden lg:block">
 					<Footer />
+				</div>
+
+				<div className="block lg:hidden">
+					<AddToCartMobile />
 				</div>
 				<div className=""></div>
 			</body>
