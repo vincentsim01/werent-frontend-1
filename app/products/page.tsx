@@ -1,21 +1,16 @@
 import ProductCard from "@/components/ProductCard";
+import { fetchProducts } from "@/services";
 
-export default function ProductsPage() {
-	return (
-		<div className="mx-auto w-full xl:w-[1280px] flex flex-col justify-center gap-2">
-			<div className="|| w-full text-2xl font-bold">
-				This is a Product list Page (string to delete)
-				<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
-					{/* MAP ProductCard */}
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-					<ProductCard />
-				</div>
-			</div>
-			{/* ^^^ div to be deleted */}
-		</div>
-	);
+export default async function ProductsPage() {
+  const products = await fetchProducts();
+
+  return (
+    <main className="bg-[var(--parchment)] min-h-screen px-3 py-4 sm:px-6 sm:py-8">
+      <div className="max-w-[1280px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </div>
+    </main>
+  );
 }
