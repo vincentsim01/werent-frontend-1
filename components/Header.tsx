@@ -83,7 +83,7 @@ export default function Header() {
               </button>
 
               <button
-                className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
+                className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden cursor-pointer sm:flex"
                 aria-label="Search"
               >
                 <svg
@@ -122,7 +122,7 @@ export default function Header() {
 
               <div className="wr-header-actions flex items-center gap-2 sm:gap-3">
                 <button
-                  className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex"
+                  className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden cursor-pointer sm:flex"
                   aria-label="cart"
                 >
 				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
