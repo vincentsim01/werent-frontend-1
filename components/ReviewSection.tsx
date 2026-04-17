@@ -1,9 +1,9 @@
 import ReviewCard from "./ReviewCard";
 import ReviewSummary from "./ReviewSummary";
-import {fetchReviews} from "../services/index.ts"
+import {fetchReviews} from "../services/index"
 import Link from "next/link";
 
-export default async function ReviewSection(props) {
+export default async function ReviewSection(props:{productId:number}) {
 	const Review = await fetchReviews(props.productId);
 	if (Review.length === 0) {
 		return (

@@ -14,7 +14,7 @@ type Review = {
     createdAt : Date
 }
 
-export default function CardReview({ review }: { review: Review }) {
+export default function CardReview( { reviews }: { reviews: Review[] } ) {
 	return (
 		<div>
 			<section
@@ -29,7 +29,7 @@ export default function CardReview({ review }: { review: Review }) {
 					>
 						Reviews
 					</h2>
-					{review.map((item) => {
+					{reviews.map((item) => {
 					return (
 						<div key={item.id} className="bg-white p-5 rounded-md mb-3 mt-3">
 							<div>

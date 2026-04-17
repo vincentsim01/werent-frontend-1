@@ -2,6 +2,7 @@ import ProductSection from "@/components/ProductSection";
 import ReviewSection from "@/components/ReviewSection";
 
 
+
 export default async function ProductDetailPage({
   params,
 }: {
@@ -11,7 +12,8 @@ export default async function ProductDetailPage({
 	const productId = Number(id);
 
 	if (isNaN(productId)) {
-		notFound();
+		return 
+		<div>Product Id Not Found</div>
 	}
 	return (
 		<div className="mx-auto w-full xl:w-[1280px] flex flex-col justify-center gap-2">

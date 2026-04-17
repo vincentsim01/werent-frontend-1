@@ -9,7 +9,7 @@ type Review = {
     title: string,
     description: string,
     attachmentUrl :string,
-    createdAt : Date
+    createdAt? : Date
 }
 
 type ReviewProps = {
