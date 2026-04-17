@@ -9,7 +9,6 @@ export default async function ProductDetailPage({
 }) {
 	const { id } = await params;
 	const productId = Number(id);
-	console.log(productId);
 
 	if (isNaN(productId)) {
 		notFound();
