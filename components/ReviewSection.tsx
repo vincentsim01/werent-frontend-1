@@ -1,16 +1,30 @@
 import ReviewCard from "./ReviewCard";
 import ReviewSummary from "./ReviewSummary";
+import {fetchReviews} from "../services/index.ts"
+import Link from "next/link";
 
-export default function ReviewSection() {
+export default async function ReviewSection(props) {
+	const Review = await fetchReviews(props.productId);
+	if (Review.length === 0) {
+		return (
+			<div>No reviews yet. Be the first to review this product!</div>
+		);
+	}
+	const maxReview = Review.reduce((accumulator,current) => {
+		return current.rating>accumulator.rating ? current : accumulator;
+	})
+
+
 	return (
 		<div>
-			<div className="w-full outline-2 outline-b outline-gray-500 || p-2">
-				This box is the review section (string to be deleted)
-				<div className="flex flex-col gap-2">
-					<ReviewSummary />
-					{/* MAP ReviewCard */}
-					<ReviewCard />
-					<ReviewCard />
+			<div className="w-full mb-5|| p-2">
+				<div className="flex flex-col gap-2 mb-15">
+					<ReviewSummary Review={maxReview} showPicture={false}/>
+					<div className='flex justify-start items-center'>
+						<Link href={`/products/${props.productId}/reviews`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+							Browse All Reviews
+						</Link>
+					</div>
 				</div>
 			</div>
 		</div>
