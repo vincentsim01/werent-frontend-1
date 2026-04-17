@@ -11,7 +11,7 @@ type Review = {
     title: string,
     description: string,
     attachmentUrl :string,
-    createdAt? : Date
+    createdAt? : string
 }
 
 export default function CardReview( { reviews }: { reviews: Review } ) {
@@ -41,7 +41,7 @@ export default function CardReview( { reviews }: { reviews: Review } ) {
 									</div>
 								</div>
 								<div>
-									{/* Member Since: {new Date(reviews.createdAt).getFullYear()} */}
+									Member Since: {reviews.createdAt ? new Date(reviews.createdAt).getFullYear() : "Unknown"}
 								</div>
 							</div>
 
