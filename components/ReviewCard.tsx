@@ -3,6 +3,7 @@
 import React, { useState } from 'react'
 import Stars from './Stars'
 import ReviewModal from './ReviewModal'
+import PictureModal from "./PictureModal";
 import { Review } from '@/types'
 
 
@@ -13,6 +14,7 @@ type ReviewProps = {
 
 function ReviewCard({Review, showPicture}:ReviewProps) {
         const [isReviewOpen, setIsReviewOpen] = useState(false);
+        const [isPictureModalOpen, setIsPictureModalOpen] = useState(false);
     
         const normalizedReview = {
             ...Review,
@@ -23,6 +25,12 @@ function ReviewCard({Review, showPicture}:ReviewProps) {
   return (
         <div className='bg-white py-7 px-10 flex flex-col gap-2 rounded-xl'>
             <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
+            <PictureModal 
+                isOpen={isPictureModalOpen} 
+                onClose={() => setIsPictureModalOpen(false)} 
+                review={Review} 
+            />
+
             <section className='flex justify-between'  onClick={() => setIsReviewOpen(true)}>
                 <p className='font-size-3'>{Review.reviewerName}</p>
                 <div className='flex'>
@@ -43,7 +51,12 @@ function ReviewCard({Review, showPicture}:ReviewProps) {
                     <p className='font-size-4'>{Review.description}</p>
                 </div>
                 <img src={Review.attachmentUrl}
-                className={`w-20 h-20 object-center object-cover rounded-xl ${showPicture ? 'block' : 'hidden'}`}/>
+                className={`w-20 h-20 object-center object-cover rounded-xl ${showPicture ? 'block' : 'hidden'}`}
+                    onClick={(e) => {
+                            e.stopPropagation();
+                            setIsPictureModalOpen(true);
+                }}
+                />
             </section>
 
         </div>
