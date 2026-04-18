@@ -18,4 +18,5 @@ export interface Review {
   numUpvotes: number;
   description: string;
   attachmentUrl: string;
+  createdAt?: Date;
 }

@@ -1,3 +1,5 @@
+"use client"
+
 import React, { useState } from 'react'
 import Stars from './Stars'
 import Link from 'next/link'
@@ -9,7 +11,8 @@ type ReviewSum = {
   productName : string,
   productBrand : string,
   totalReview : number,
-  backButton : boolean
+  backButton : boolean,
+  Review : Review
 }
 
 
@@ -25,12 +28,12 @@ type Review = {
 }
 
 type ReviewProps = {
-    Review : Review,
-    showPicture : boolean
+    Review? : Review,
+    showPicture? : boolean
 }
 
 
-function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton}:ReviewSum, {Review, showPicture}:ReviewProps) {
+function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton, Review}:ReviewSum) {
     const [isReviewOpen, setIsReviewOpen] = useState(false);
 
 	const normalizedReview = {
@@ -53,7 +56,7 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
         </div>
         
 
-        <section className='flex gap-2 items-center'>
+        <section className='flex gap-2 items-center' onClick={() => setIsReviewOpen(true)}>
             <p className='font-size-3'>{productRating}</p>
             <div className='flex'>
                 <Stars rating={productRating}/>

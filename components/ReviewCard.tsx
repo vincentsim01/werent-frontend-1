@@ -1,5 +1,8 @@
-import React from 'react'
+"use client"
+
+import React, { useState } from 'react'
 import Stars from './Stars'
+import ReviewModal from './ReviewModal'
 import { Review } from '@/types'
 
 
@@ -9,10 +12,18 @@ type ReviewProps = {
 }
 
 function ReviewCard({Review, showPicture}:ReviewProps) {
-	console.log(Review)
+        const [isReviewOpen, setIsReviewOpen] = useState(false);
+    
+        const normalizedReview = {
+            ...Review,
+            createdAt: Review.createdAt
+                ? new Date(Review.createdAt).toISOString()
+                : undefined,
+        };
   return (
         <div className='bg-white py-7 px-10 flex flex-col gap-2 rounded-xl'>
-            <section className='flex justify-between'>
+            <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
+            <section className='flex justify-between'  onClick={() => setIsReviewOpen(true)}>
                 <p className='font-size-3'>{Review.reviewerName}</p>
                 <div className='flex'>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--werent-green-1)" className="size-6">
