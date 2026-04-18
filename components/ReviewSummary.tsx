@@ -1,5 +1,10 @@
-import React from 'react'
+"use client";
+
+import React, { useState } from 'react'
+
 import Stars from './Stars'
+import ReviewModal from './ReviewModal'
+import PictureModal from './PictureModal'
 
 type Review = {
     id : number
@@ -18,8 +23,24 @@ type ReviewProps = {
 }
 
 export default function ReviewSummary({Review, showPicture}:ReviewProps) {
+	const [isReviewOpen, setIsReviewOpen] = useState(false);
+	const [isPictureOpen, setIsPictureOpen] = useState(false);
+
+	// Normalize review for the modal (ensure types match)
+	const normalizedReview = {
+		...Review,
+		createdAt: Review.createdAt?.toISOString()
+	};
+
 	return (
-            <div className='bg-white p-5 flex flex-col gap-2 rounded-xl'>
+		<>
+			<ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
+			<PictureModal isOpen={isPictureOpen} onClose={() => setIsPictureOpen(false)} review={normalizedReview as any} />
+
+            <div 
+				className='bg-white p-5 flex flex-col gap-2 rounded-xl cursor-pointer hover:shadow-md transition-shadow duration-200'
+				onClick={() => setIsReviewOpen(true)}
+			>
             <section className='flex justify-between'>
                 <p className='text-lg'>{Review.reviewerName}</p>
                 <div className='flex'>
@@ -39,10 +60,18 @@ export default function ReviewSummary({Review, showPicture}:ReviewProps) {
                     <p className='text-lg'>{Review.title}</p>
                     <p>{Review.description}</p>
                 </div>
-                <img src={Review.attachmentUrl}
-                className={`w-20 object-center object-contain rounded-xl ${showPicture ? 'hidden' : 'block'}`}/>
+                <img 
+					src={Review.attachmentUrl}
+                	className={`w-20 h-28 object-cover rounded-xl mt-2 cursor-pointer hover:opacity-80 transition-opacity duration-200 ${showPicture ? 'hidden' : 'block'}`}
+					onClick={(e) => {
+						e.stopPropagation();
+						setIsPictureOpen(true);
+					}}
+				/>
             </section>
 
         </div>
+		</>
 	);
 }
+

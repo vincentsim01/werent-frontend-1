@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import Stars from "./Stars";
+import ReviewModal from "./ReviewModal";
+import PictureModal from "./PictureModal";
 
 type Review = {
     id : number
@@ -15,7 +17,21 @@ type Review = {
 }
 
 export default function CardReview( { reviews }: { reviews: Review } ) {
+	const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
+	const [isPictureModalOpen, setIsPictureModalOpen] = useState(false);
+
 	return (
+		<>
+			<ReviewModal 
+				isOpen={isReviewModalOpen} 
+				onClose={() => setIsReviewModalOpen(false)} 
+				review={reviews} 
+			/>
+			<PictureModal 
+				isOpen={isPictureModalOpen} 
+				onClose={() => setIsPictureModalOpen(false)} 
+				review={reviews} 
+			/>
 		<div>
 			<section
 				id="product-reviews"
@@ -28,7 +44,10 @@ export default function CardReview( { reviews }: { reviews: Review } ) {
 						style={{ color: "var(--werent-figma-text)" }}
 					>
 					</h2>
-						<div className="bg-white p-5 rounded-md mb-3 mt-3">
+						<div 
+							className="bg-white p-5 rounded-md mb-3 mt-3 cursor-pointer hover:shadow-md transition-shadow duration-200"
+							onClick={() => setIsReviewModalOpen(true)}
+						>
 							<div>
 								<div className='flex justify-between'>
 									<div>
@@ -59,12 +78,21 @@ export default function CardReview( { reviews }: { reviews: Review } ) {
 									<p>{reviews.title}</p>
 								<div>
 									<p>{reviews.description}</p>
-									<img src={reviews.attachmentUrl} alt="Review Attachment" className="w-20 object-center object-contain rounded-xl"/>
+									<img 
+										src={reviews.attachmentUrl} 
+										alt="Review Attachment" 
+										className="w-20 h-28 object-cover rounded-xl mt-3 cursor-pointer hover:opacity-80 transition-opacity duration-200"
+										onClick={(e) => {
+											e.stopPropagation();
+											setIsPictureModalOpen(true);
+										}}
+									/>
 								</div>
 							</div>
 						</div>
 			</section>
 		</div>
+		</>
 	);
 }
 
