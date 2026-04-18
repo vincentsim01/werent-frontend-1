@@ -12,10 +12,36 @@ type ReviewSum = {
   backButton : boolean
 }
 
-function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton}:ReviewSum) {
+
+type Review = {
+    id : number
+    reviewerName : string,
+    rating : number,
+    numUpvotes: number,
+    title: string,
+    description: string,
+    attachmentUrl :string,
+    createdAt? : Date
+}
+
+type ReviewProps = {
+    Review : Review,
+    showPicture : boolean
+}
+
+
+function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton}:ReviewSum, {Review, showPicture}:ReviewProps) {
     const [isReviewOpen, setIsReviewOpen] = useState(false);
+
+	const normalizedReview = {
+		...Review,
+        createdAt: Review.createdAt
+            ? new Date(Review.createdAt).toISOString()
+            : undefined,
+	};
   return (
     <div>
+        <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
         <div className='flex items-center'>
           <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} cursor-pointer`}>
             <svg className='size-6' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
