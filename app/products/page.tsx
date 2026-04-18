@@ -5,6 +5,9 @@ import { notFound } from "next/navigation";
 
 export default async function ProductsPage() {
   const products = await fetchProducts();
+  if(!products || products.length === 0) {
+    return (<div>No Product Found</div>)
+  }
 
   return (
     <main className="bg-[var(--parchment)] min-h-screen px-3 py-4 sm:px-6 sm:py-8">

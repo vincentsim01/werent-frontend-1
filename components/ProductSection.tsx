@@ -1,8 +1,11 @@
 import Breadcrumbs from "./Breadcrumbs";
 import Carousel from "./Carousel";
 import ProductContent from "./ProductContent";
+import {fetchProduct} from '@/services/index';
 
-export default function ProductSection() {
+export default async function ProductSection({ productId }: { productId: number }) {
+	const product = await fetchProduct(productId);
+
 	return (
 		<div>
 			<div className="w-full outline-2 outline-b outline-gray-500 || p-2">
