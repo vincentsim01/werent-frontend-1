@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Stars from './Stars'
 import Link from 'next/link'
+import ReviewModal from './ReviewModal'
 
 type ReviewSum = {
   productId : number,
@@ -12,6 +13,7 @@ type ReviewSum = {
 }
 
 function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton}:ReviewSum) {
+    const [isReviewOpen, setIsReviewOpen] = useState(false);
   return (
     <div>
         <div className='flex items-center'>
