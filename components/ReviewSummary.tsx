@@ -15,13 +15,16 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
   return (
     <div>
         <div className='flex items-center'>
-          <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} cursor-pointer`}>
+          <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} flex items-center cursor-pointer`}>
             <svg className='size-6' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>
+
+            <p className='font-size-1'>Reviews</p>
+
           </Link>
           
-          <p className='font-size-1'>Reviews</p>
+          <p className={`font-size-1 ${backButton ? 'hidden' : 'block'}`}>Reviews</p>
         </div>
         
 
