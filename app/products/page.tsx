@@ -8,6 +8,7 @@ export default async function ProductsPage() {
 
   return (
     <main className="bg-[var(--parchment)] min-h-screen px-3 py-4 sm:px-6 sm:py-8">
+      <p className="font-bold text-[var(--werent-green-1)] font-size-1 text-center pb-5">All Products</p>
       <div className="max-w-[1280px] mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-3 md:gap-4">
         {products.map((product) => (
           <Link key={product.id} href={`/products/${product.id}`}>
