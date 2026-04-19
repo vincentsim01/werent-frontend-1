@@ -17,9 +17,6 @@ export default async function ProductDetailPage({params,}: {
 	}
 	return (
 		<div className="mx-auto w-full xl:w-[1280px] flex flex-col justify-center gap-2 px-10 lg:px-30">
-			<div className="|| w-full text-2xl font-bold">
-				This is a products Detail Page (string to delete)
-			</div>
 			{/* ^^^ div to be deleted */}
 			<div className="w-full">
 				<ProductSection productId={productId}/>

@@ -1,9 +1,18 @@
-import { Product, Review } from "@/types";
+import {
+  Product,
+  ResFetchProducts,
+  ResFetchReviewsByProductId,
+  Review,
+} from "@/types";
 
 const BASE_URL = "https://werent-backend-production.up.railway.app";
 // const BASE_URL = "http://localhost:4000"; //Change to deployed BASE_URL later
 
-export const fetchProducts = async (): Promise<Product[]> => {
+export async function fetchProducts(): Promise<Product[]> {
+  return fetchProductsRaw().then((res) => res.data);
+}
+
+const fetchProductsRaw = async (): Promise<ResFetchProducts> => {
   try {
     const response = await fetch(`${BASE_URL}/products`);
     if (!response.ok) {
@@ -31,7 +40,9 @@ export const fetchProduct = async (id: number): Promise<Product> => {
   }
 };
 
-export const fetchReviews = async (productId: number): Promise<Review[]> => {
+export const fetchReviews = async (
+  productId: number,
+): Promise<ResFetchReviewsByProductId> => {
   try {
     const response = await fetch(`${BASE_URL}/products/${productId}/reviews`);
     if (!response.ok) {

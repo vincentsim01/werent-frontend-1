@@ -2,6 +2,7 @@ import ReviewCard from "@/components/ReviewCard";
 import ReviewSummary from "@/components/ReviewSummary";
 import {fetchReviews} from "@/services/index";
 import { fetchProduct } from "@/services/index";
+import ReviewsInfiniteList from "@/components/ReviewsInfiniteList";
 import Link from "next/link";
 import Stars from "@/components/Stars";
 import AddToCartMobile from "@/components/AddToCart_Mobile";
@@ -13,7 +14,8 @@ export default async function AllReviews({
   params: Promise<{ id: string }>;
 }) {
 	const { id } = await params;
-	const allreview = await fetchReviews(Number(id));
+	const allreviews = await fetchReviews(Number(id));
+	const allreview=allreviews.data;
 	const products : Product = await fetchProduct(Number(id))
 
 	const averageRating = allreview.reduce((acc, item) => acc + item.rating, 0) / allreview.length;
@@ -34,13 +36,17 @@ export default async function AllReviews({
 								className="rounded-2xl px-4 py-8 sm:px-6 sm:py-10"
 								>
 									<div className="flex flex-col gap-3">
-										{allreview.map((item) => {
+										{/* {allreview.map((item) => {
 										return(
 											<div key={item.id}>
 												<ReviewCard Review={item} showPicture={true}/>
 											</div>
 										)
-									})}
+									})} */}
+									    <ReviewsInfiniteList
+											reviews={allreview}
+											pageSize={allreview.length <= 10 ? 2 : 10}
+										/>
 									</div>
 							</section>
 

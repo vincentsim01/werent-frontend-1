@@ -4,6 +4,7 @@ import React, { useState } from 'react'
 import Stars from './Stars'
 import Link from 'next/link'
 import ReviewModal from './ReviewModal'
+import {Review} from "@/types"
 
 type ReviewSum = {
   productId : number,
@@ -15,16 +16,16 @@ type ReviewSum = {
   Review : Review
 }
 
-type Review = {
-    id : number
-    reviewerName : string,
-    rating : number,
-    numUpvotes: number,
-    title: string,
-    description: string,
-    attachmentUrl :string,
-    createdAt? : Date
-}
+// type Review = {
+//     id : number
+//     reviewerName : string,
+//     rating : number,
+//     numUpvotes: number,
+//     title: string,
+//     description: string,
+//     attachmentUrl :string,
+//     createdAt? : Date
+// }
 
 type ReviewProps = {
     Review? : Review,

@@ -10,7 +10,6 @@ export default async function ProductSection({ productId }: { productId: number 
     return (
         <div>
             <div className="w-full  || p-2">
-                This box is the product section (string to delete)
                 <div className="flex-col gap-2">
                     <Breadcrumbs productName={product.name} />
                     <div className="flex flex-col lg:flex-row gap-2">

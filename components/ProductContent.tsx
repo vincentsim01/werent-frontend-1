@@ -5,7 +5,8 @@ import Stars from "./Stars";
 export default async function ProductContent({ id } : { id: number}) {
     const product = await fetchProduct(id);
     const formattedPrice = new Intl.NumberFormat("id-ID").format(product.price);
-    const allreview = await fetchReviews(Number(id));
+  const allreviewRaw = await fetchReviews(Number(id));
+  const allreview = allreviewRaw.data;
     const averageRating = allreview.reduce((acc, item) => acc + item.rating, 0) / allreview.length;
 
     return (
@@ -59,14 +60,12 @@ export default async function ProductContent({ id } : { id: number}) {
                         </svg>
                     </button>
                 </div>
-                <div className="w-full h-px bg-[var(--werent-green-1)] my-4" />
+                <div className="w-full bg-[var(--werent-green-1)] my-1" />
                 <h3 className="text-[var(--werent-green-1)] font-medium mb-3">
                     Description
                 </h3>
                 <h4 className="text-[var(--werent-green-1)]">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor, 
-                    nisl eget ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nunc. 
-                    Donec auctor, nisl eget ultricies lacinia, nunc nisl aliquam nisl, eget aliquam nunc nisl eget nunc.
+                    {product.description}
                 </h4>
             </div>
         </div>

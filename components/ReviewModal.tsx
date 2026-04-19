@@ -27,17 +27,17 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-0 md:p-4 overflow-y-auto">
       {/* Container */}
-      <div className="relative bg-[#F9F9F9] mt-100 md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
+      <div className="relative bg-[#F9F9F9] mt-30 md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
         
         {/* Mobile Header (Back Button) */}
-        <div className="md:hidden flex items-center p-6 bg-white shrink-0">
+        {/* <div className="md:hidden flex items-center p-6 bg-white shrink-0">
           <button onClick={onClose} className="flex items-center gap-2 text-gray-800 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 text-gray-800">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
             <span className="font-semibold text-lg" style={{ fontFamily: 'Raleway, sans-serif' }}>See Other Reviews</span>
           </button>
-        </div>
+        </div> */}
 
         {/* Close Button Desktop */}
         <button 
@@ -50,12 +50,12 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
         </button>
 
         {/* Left Column (Desktop) / Top Section (Mobile): Image */}
-        <div className="w-full md:w-[45%] bg-white p-4 md:p-10 flex items-center justify-center shrink-0">
-          <div className="w-full aspect-[3/4] md:aspect-auto md:h-full relative overflow-hidden rounded-2xl md:rounded-lg">
+        <div className="w-[90%] md:w-[45%] bg-white p-4 md:p-10 flex items-center justify-center shrink-0">
+          <div className="w-[70%] md:w-full aspect-[5/6] md:aspect-auto md:h-full relative overflow-hidden rounded-2xl md:rounded-lg">
             <img 
               src={review.attachmentUrl} 
               alt="Review attachment" 
-              className="w-full h-full object-cover"
+              className="h-[40vh] md:w-full md:h-[80vh] object-cover"
             />
           </div>
         </div>
