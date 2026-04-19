@@ -6,6 +6,7 @@ import ReviewsInfiniteList from "@/components/ReviewsInfiniteList";
 import Link from "next/link";
 import Stars from "@/components/Stars";
 import AddToCartMobile from "@/components/AddToCart_Mobile";
+import { Review } from "@/types";
 import { Product } from "@/types";
 
 export default async function AllReviews({
@@ -17,8 +18,22 @@ export default async function AllReviews({
 	const allreviews = await fetchReviews(Number(id));
 	const allreview=allreviews.data;
 	const products : Product = await fetchProduct(Number(id))
+	const reviews = products.reviews ?? [];
 
-	const averageRating = allreview.reduce((acc, item) => acc + item.rating, 0) / allreview.length;
+	type MaxReview = {
+	value: number;
+	index: number;
+	review: Review;
+	};
+	const maxReview = reviews.reduce<MaxReview>(
+	(max, review, index) => {
+		if (review.numUpvotes > max.value) {
+		return { value: review.numUpvotes, index, review };
+		}
+		return max;
+	},
+	{ value: -Infinity, index: 0, review: reviews[0] }
+	);
 	return (
 		<div className="mx-auto w-full xl:w-[1280px] flex flex-col justify-center gap-2 px-10 lg:px-30">
 				<div className="flex flex-col gap-2 relative">
@@ -26,7 +41,7 @@ export default async function AllReviews({
 						<div className="py-5">
 							<ReviewSummary productId={Number(id)} productRating={products.rating}
 							productName={products.name} productBrand={products.brand}
-							totalReview={allreview.length} backButton={true} Review={allreview[0]}/>
+							totalReview={reviews.length} backButton={true} Review={maxReview.review}/>
 						</div>
 					</div>
 					<div>
@@ -44,8 +59,8 @@ export default async function AllReviews({
 										)
 									})} */}
 									    <ReviewsInfiniteList
-											reviews={allreview}
-											pageSize={allreview.length <= 10 ? 2 : 10}
+											reviews={reviews}
+											pageSize={reviews.length <= 10 ? 2 : 10}
 										/>
 									</div>
 							</section>
