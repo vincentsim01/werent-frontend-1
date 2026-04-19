@@ -4,6 +4,7 @@ import {fetchReviews} from "@/services/index";
 import { fetchProduct } from "@/services/index";
 import Link from "next/link";
 import Stars from "@/components/Stars";
+import AddToCartMobile from "@/components/AddToCart_Mobile";
 import { Product } from "@/types";
 
 export default async function AllReviews({
@@ -45,6 +46,9 @@ export default async function AllReviews({
 
 					</div>
 				</div>
+			<div className="block lg:hidden">
+				<AddToCartMobile />
+			</div>
 		</div>
 
 	);

@@ -41,10 +41,6 @@ export default function RootLayout({
 				<div className="hidden lg:block">
 					<Footer />
 				</div>
-
-				<div className="block lg:hidden">
-					<AddToCartMobile />
-				</div>
 				<div className=""></div>
 			</body>
 		</html>

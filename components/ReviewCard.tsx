@@ -50,13 +50,25 @@ function ReviewCard({Review, showPicture}:ReviewProps) {
                     <p className='font-size-3'>{Review.title}</p>
                     <p className='font-size-4'>{Review.description}</p>
                 </div>
+
+                {Review.attachmentUrl ?  
                 <img src={Review.attachmentUrl}
                 className={`w-20 h-20 object-center object-cover rounded-xl ${showPicture ? 'block' : 'hidden'}`}
                     onClick={(e) => {
                             e.stopPropagation();
                             setIsPictureModalOpen(true);
                 }}
-                />
+                /> : 
+                null
+                }
+                
+                {/* <img src={Review.attachmentUrl}
+                className={`w-20 h-20 object-center object-cover rounded-xl ${showPicture ? 'block' : 'hidden'}`}
+                    onClick={(e) => {
+                            e.stopPropagation();
+                            setIsPictureModalOpen(true);
+                }}
+                /> */}
             </section>
 
         </div>

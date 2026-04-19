@@ -2,6 +2,7 @@ import ProductSection from "@/components/ProductSection";
 import ReviewSection from "@/components/ReviewSection";
 import { fetchProduct } from "@/services";
 import { Product } from "@/types";
+import AddToCartMobile from "@/components/AddToCart_Mobile";
 
 export default async function ProductDetailPage({params,}: {
   params: Promise<{ id: string }>;}) {
@@ -26,6 +27,9 @@ export default async function ProductDetailPage({params,}: {
 			<div className="w-full">
 				<ReviewSection productId={products.id} productRating={products.rating}
 				productName={products.name} productBrand={products.brand}/>
+			</div>
+			<div className="block lg:hidden">
+				<AddToCartMobile />
 			</div>
 		</div>
 	);
