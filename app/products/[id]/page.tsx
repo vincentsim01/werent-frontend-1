@@ -22,7 +22,7 @@ export default async function ProductDetailPage({
 			</div>
 			{/* ^^^ div to be deleted */}
 			<div className="w-full">
-				<ProductSection />
+				<ProductSection productId={productId}/>
 			</div>
 			<div className="w-full">
 				<ReviewSection productId={productId}/>

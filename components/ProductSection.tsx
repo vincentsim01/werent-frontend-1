@@ -2,7 +2,7 @@ import Breadcrumbs from "./Breadcrumbs";
 import Carousel from "./Carousel";
 import ProductContent from "./ProductContent";
 
-export default function ProductSection() {
+export default function ProductSection({ productId }: { productId: number }) {
 	return (
 		<div>
 			<div className="w-full outline-2 outline-b outline-gray-500 || p-2">
@@ -14,7 +14,7 @@ export default function ProductSection() {
 							<Carousel />
 						</div>
 						<div className="w-full lg:w-1/3">
-							<ProductContent />
+							<ProductContent id={productId}/>
 						</div>
 					</div>
 				</div>
