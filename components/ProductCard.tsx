@@ -70,7 +70,7 @@ export default function CardProduct({ product }: CardProductProps) {
           </div>
           <button
             className="w-full sm:w-auto text-center bg-[var(--werent-green-1)] hover:opacity-60 text-white text-[11px] 
-                        rounded uppercase px-3.5 py-1.5 transition-colors duration-200 whitespace-nowrap"
+                        rounded uppercase px-3.5 py-1.5 transition-colors duration-200 whitespace-nowrap cursor-pointer"
             style={{ letterSpacing: "0.1em" }}
           >
             Rent
