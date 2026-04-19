@@ -27,7 +27,7 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-0 md:p-4 overflow-y-auto">
       {/* Container */}
-      <div className="relative bg-[#F9F9F9] md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
+      <div className="relative bg-[#F9F9F9] mt-100 md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
         
         {/* Mobile Header (Back Button) */}
         <div className="md:hidden flex items-center p-6 bg-white shrink-0">
@@ -42,7 +42,7 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
         {/* Close Button Desktop */}
         <button 
           onClick={onClose}
-          className="hidden md:block absolute right-6 top-6 z-20 p-5 text-gray-400 hover:text-gray-600 transition-colors"
+          className=" md:block absolute right-6 top-6 z-20 p-5 text-gray-400 hover:text-gray-600 transition-colors"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
