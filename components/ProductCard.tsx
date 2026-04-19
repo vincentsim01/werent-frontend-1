@@ -57,7 +57,7 @@ export default function CardProduct({ product }: CardProductProps) {
               className="text-[13px] font-medium"
               style={{ color: "var(--ink)" }}
             >
-              Rp {formattedPrice}
+              $ {formattedPrice}
             </span>
             {/* <span
                             className="text-[11px] text-[var(--warm-gray)]"

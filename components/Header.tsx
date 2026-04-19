@@ -24,7 +24,7 @@ export default function Header() {
   }, []);
 
   return (
-	      <div className="mx-auto pb-32">
+	      <div className="mx-auto">
         <header className="wr-header sticky top-0 z-40 p-5  bg-white">
           <div className="wr-header-inner mx-auto px-4 sm:px-5 md:w-[100%]">
             <div className="h-12  sm:h-14 flex items-center justify-between">
