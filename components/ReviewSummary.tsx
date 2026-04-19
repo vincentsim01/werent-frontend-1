@@ -15,7 +15,6 @@ type ReviewSum = {
   Review : Review
 }
 
-
 type Review = {
     id : number
     reviewerName : string,
@@ -32,9 +31,9 @@ type ReviewProps = {
     showPicture? : boolean
 }
 
-
 function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton, Review}:ReviewSum) {
-    const [isReviewOpen, setIsReviewOpen] = useState(false);
+
+  const [isReviewOpen, setIsReviewOpen] = useState(false);
 
 	const normalizedReview = {
 		...Review,
@@ -44,25 +43,28 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
 	};
   return (
     <div>
-        <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
+      <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
         <div className='flex items-center'>
-          <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} cursor-pointer`}>
+          <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} flex items-center cursor-pointer`}>
             <svg className='size-6' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5 8.25 12l7.5-7.5" />
             </svg>
+
+            <p className='font-size-1'>Reviews</p>
+
           </Link>
           
-          <p className='font-size-1'>Reviews</p>
+          <p className={`font-size-1 ${backButton ? 'hidden' : 'block'}`}>Reviews</p>
         </div>
         
 
-        <section className='flex gap-2 items-center' onClick={() => setIsReviewOpen(true)}>
-            <p className='font-size-3'>{productRating}</p>
-            <div className='flex'>
+        <section className='flex gap-2 items-center cursor-pointer' onClick={() => setIsReviewOpen(true)}>
+            <p className='font-size-3 cursor-pointer' onClick={() => setIsReviewOpen(true)}>{productRating}</p>
+            <div className='flex cursor-pointer' onClick={() => setIsReviewOpen(true)}>
                 <Stars rating={productRating}/>
             </div>
         </section>
-        <p>{totalReview} Reviews for {productName} by {productBrand}</p>
+        <p onClick={() => setIsReviewOpen(true)}>{totalReview} Reviews for {productName} by {productBrand}</p>
     </div>
   )
 }

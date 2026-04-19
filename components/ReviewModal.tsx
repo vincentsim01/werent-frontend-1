@@ -31,7 +31,7 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
         
         {/* Mobile Header (Back Button) */}
         <div className="md:hidden flex items-center p-6 bg-white shrink-0">
-          <button onClick={onClose} className="flex items-center gap-2 text-gray-800">
+          <button onClick={onClose} className="flex items-center gap-2 text-gray-800 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5 text-gray-800">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>

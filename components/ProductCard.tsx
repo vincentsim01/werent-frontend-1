@@ -8,7 +8,7 @@ export default function CardProduct({ product }: CardProductProps) {
   const formattedPrice = new Intl.NumberFormat("id-ID").format(product.price);
 
   return (
-    <div className="bg-white border border-[var(--border)] overflow-hidden rounded transition-transform duration-200 cursor-pointer hover:-translate-y-1 hover:shadow-lg">
+    <div className="bg-white border border-zinc-300 overflow-hidden rounded transition-transform duration-200 cursor-pointer hover:-translate-y-1 hover:shadow-lg">
       {/* Image */}
       <div className="relative aspect-[3/4] bg-[var(--parchment)] overflow-hidden">
         <img
@@ -33,8 +33,11 @@ export default function CardProduct({ product }: CardProductProps) {
                 >
                     {product.brand}
                 </p> */}
-        <h3 className="text-[15px] font-medium text-[var(--ink)] mb-2.5 leading-snug truncate">
+        <h3 className="text-[15px] font-medium text-[var(--werent-green-1)] mb-2.5 leading-snug truncate">
           {product.name}
+        </h3>
+        <h3 className="text-[12px] text-[var(--werent-green-1)] mb-2.5 leading-snug truncate">
+          {product.brand}
         </h3>
 
         {/* Sizes */}
@@ -66,12 +69,9 @@ export default function CardProduct({ product }: CardProductProps) {
                         </span> */}
           </div>
           <button
-            className="w-full sm:w-auto text-center bg-[var(--gold)] hover:bg-[var(--gold-dark)] text-white text-[11px] 
+            className="w-full sm:w-auto text-center bg-[var(--werent-green-1)] hover:opacity-60 text-white text-[11px] 
                         rounded uppercase px-3.5 py-1.5 transition-colors duration-200 whitespace-nowrap"
-            style={{
-              fontFamily: "var(--font-dm-mono)",
-              letterSpacing: "0.1em",
-            }}
+            style={{ letterSpacing: "0.1em" }}
           >
             Rent
           </button>
