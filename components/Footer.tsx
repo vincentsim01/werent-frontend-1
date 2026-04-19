@@ -22,7 +22,6 @@ export default function Footer() {
                   width={200}
                   height={100}
                   className="object-contain hover:scale-105 hover:rotate-2 transition-transform duration-200 cursor-pointer "
-                  onclick={()=>router.push("/")}
                 />
               </Link>
             </div>
