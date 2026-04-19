@@ -24,11 +24,12 @@ export default function Header() {
   }, []);
 
   return (
-	      <div className="mx-auto pb-32">
-        <header className="wr-header sticky top-0 z-40 p-5  bg-white">
+	<div className="mx-auto">
+        <header className="wr-header sticky top-0 z-40 px-5  bg-white">
           <div className="wr-header-inner mx-auto px-4 sm:px-5">
-            <div className="h-12 sm:h-14 flex items-center justify-between">
-              <button
+            <div className="h-12 sm:h-14 flex items-center">
+              <div className="w-[30%] flex justify-start">
+                <button
                 className="wr-icon-btn cursor-pointer w-8 h-8 flex items-center justify-center transition-opacity hover:opacity-60 sm:hidden"
                 aria-label="Open menu"
                 aria-expanded={isMobileMenuOpen}
@@ -46,13 +47,13 @@ export default function Header() {
                     <>
                       <path
                         d="M4.2 4.2L13.8 13.8"
-                        stroke="currentColor"
+                        stroke="var(--werent-green-1)"
                         strokeWidth="1.2"
                         strokeLinecap="round"
                       />
                       <path
                         d="M13.8 4.2L4.2 13.8"
-                        stroke="currentColor"
+                        stroke="var(--werent-green-1)"
                         strokeWidth="1.2"
                         strokeLinecap="round"
                       />
@@ -80,9 +81,9 @@ export default function Header() {
                     </>
                   )}
                 </svg>
-              </button>
+                </button>
 
-              <button
+                <button
                 className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden cursor-pointer sm:flex"
                 aria-label="Search"
               >
@@ -110,33 +111,34 @@ export default function Header() {
 
 
 
-              </button>
+                </button>
+              </div>
 
-              <div className="wr-brand-wrap flex items-center justify-center px-3 hover:scale-105 hover:rotate-4 transition-transform duration-200">
+              <div className="w-[40%] wr-brand-wrap flex items-center justify-center px-3 hover:scale-105 hover:rotate-4 transition-transform duration-200">
                 <img
                   src="/logo.png"
                   alt="WeRent"
-                  className="wr-brand-logo w-[80px] object-contain"
+                  className="wr-brand-logo w-25 object-contain"
                 />
               </div>
 
-              <div className="wr-header-actions flex items-center gap-2 sm:gap-3">
+              <div className="w-[30%] justify-end wr-header-actions flex items-center gap-2 sm:gap-3">
                 <button
                   className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden cursor-pointer sm:flex"
                   aria-label="cart"
                 >
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-				<path fillRule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clipRule="evenodd" />
-				</svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--werent-green-1)" className="size-6">
+                <path fillRule="evenodd" d="M7.5 6v.75H5.513c-.96 0-1.764.724-1.865 1.679l-1.263 12A1.875 1.875 0 0 0 4.25 22.5h15.5a1.875 1.875 0 0 0 1.865-2.071l-1.263-12a1.875 1.875 0 0 0-1.865-1.679H16.5V6a4.5 4.5 0 1 0-9 0ZM12 3a3 3 0 0 0-3 3v.75h6V6a3 3 0 0 0-3-3Zm-3 8.25a3 3 0 1 0 6 0v-.75a.75.75 0 0 1 1.5 0v.75a4.5 4.5 0 1 1-9 0v-.75a.75.75 0 0 1 1.5 0v.75Z" clipRule="evenodd" />
+                </svg>
 
                 </button>
                 <button
                   className="wr-icon-btn w-9 h-9 items-center justify-center transition-opacity hover:opacity-60 hidden sm:flex cursor-pointer"
                   aria-label="wishlist"
                 >
-				<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-6">
-				<path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
-				</svg>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--werent-green-1)" className="size-6">
+                <path d="m11.645 20.91-.007-.003-.022-.012a15.247 15.247 0 0 1-.383-.218 25.18 25.18 0 0 1-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0 1 12 5.052 5.5 5.5 0 0 1 16.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 0 1-4.244 3.17 15.247 15.247 0 0 1-.383.219l-.022.012-.007.004-.003.001a.752.752 0 0 1-.704 0l-.003-.001Z" />
+                </svg>
 
 
                 </button>
@@ -163,7 +165,7 @@ export default function Header() {
               </nav>
             )}
 
-            <nav className="border-b border-[var(--werent-green-1)] h-10 hidden sm:block">
+            <nav className="h-10 hidden sm:block">
               <ul className=" h-full flex items-center justify-center gap-4 sm:gap-6 overflow-x-auto whitespace-nowrap scrollbar-hide">
                 {navItems.map((item) => (
                   <li key={item}>
@@ -176,6 +178,7 @@ export default function Header() {
             </nav>
           </div>
         </header>
+  <hr className="h-1 bg-[var(--werent-green-1)] "/>
 	</div>
   );
 }
