@@ -27,7 +27,7 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-0 md:p-4 overflow-y-auto">
       {/* Container */}
-      <div className="relative bg-[#F9F9F9] mt-30 md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
+      <div className="relative bg-[#F9F9F9] mt-30 md:bg-white w-full h-full md:h-auto md:max-w-[900px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
         
         {/* Mobile Header (Back Button) */}
         {/* <div className="md:hidden flex items-center p-6 bg-white shrink-0">
@@ -42,7 +42,7 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
         {/* Close Button Desktop */}
         <button 
           onClick={onClose}
-          className=" md:block absolute right-6 top-6 z-20 p-5 text-gray-400 hover:text-gray-600 transition-colors"
+          className=" md:block absolute right-6 top-6 z-20 p-5 text-gray-400 hover:text-gray-600 transition-colors cursor-pointer"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -50,13 +50,26 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
         </button>
 
         {/* Left Column (Desktop) / Top Section (Mobile): Image */}
-        <div className="w-[90%] md:w-[45%] bg-white p-4 md:p-10 flex items-center justify-center shrink-0">
-          <div className="w-[70%] md:w-full aspect-[5/6] md:aspect-auto md:h-full relative overflow-hidden rounded-2xl md:rounded-lg">
-            <img 
+        <div className="w-[80%]  md:w-[55%] md:h-[50%]  p-4 md:p-10 flex items-center justify-center shrink-0">
+          <div className="w-[80%] md:w-full aspect-[5/6] md:aspect-auto md:h-full relative overflow-hidden rounded-2xl md:rounded-lg">
+            {/* <img 
               src={review.attachmentUrl} 
               alt="Review attachment" 
-              className="h-[40vh] md:w-full md:h-[80vh] object-cover"
-            />
+              className="h-[40vh] md:w-full md:h-[0vh] object-cover"
+            /> */}
+
+              {review.attachmentUrl ?             
+                <img 
+                  src={review.attachmentUrl} 
+                  alt="Review attachment" 
+                  className="w-[80%] md:h-[60vh] md:w-[90%] object-cover"
+                /> :
+                  <img 
+                    src="/user.png"
+                    alt="Review attachment" 
+                    className="w-full md:w-[80%] object-cover"
+                />
+            }
           </div>
         </div>
 

@@ -57,7 +57,7 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
 	};
   return (
     <div>
-      <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} />
+      {/* <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} /> */}
         <div className='flex items-center'>
           <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} flex items-center cursor-pointer`}>
             <svg className='size-6' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -72,9 +72,9 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
         </div>
         
 
-        <section className='flex gap-2 items-center cursor-pointer' onClick={() => setIsReviewOpen(true)}>
-            <p className='font-size-3 cursor-pointer' onClick={() => setIsReviewOpen(true)}>{productRating}</p>
-            <div className='flex cursor-pointer' onClick={() => setIsReviewOpen(true)}>
+        <section className='flex gap-2 items-center ' onClick={() => setIsReviewOpen(true)}>
+            <p className='font-size-3 ' onClick={() => setIsReviewOpen(true)}>{productRating}</p>
+            <div className='flex' onClick={() => setIsReviewOpen(true)}>
                 <Stars rating={productRating}/>
             </div>
         </section>

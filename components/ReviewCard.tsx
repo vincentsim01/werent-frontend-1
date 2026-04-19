@@ -53,7 +53,7 @@ function ReviewCard({Review, showPicture}:ReviewProps) {
 
                 {Review.attachmentUrl ?  
                 <img src={Review.attachmentUrl}
-                className={`w-20 h-20 object-center object-cover rounded-xl ${showPicture ? 'block' : 'hidden'}`}
+                className={`w-20 h-20 cursor-pointer object-center object-cover rounded-xl ${showPicture ? 'block' : 'hidden'}`}
                     onClick={(e) => {
                             e.stopPropagation();
                             setIsPictureModalOpen(true);
