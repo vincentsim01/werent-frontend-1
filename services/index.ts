@@ -19,6 +19,7 @@ export const fetchProducts = async (): Promise<Product[]> => {
 
 export const fetchProduct = async (id: number): Promise<Product> => {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 800)); // Delay buatan untuk memunculkan loading page
     const response = await fetch(`${BASE_URL}/products/${id}`);
     if (!response.ok) {
       throw new Error("Failed to fetch product");
@@ -33,6 +34,7 @@ export const fetchProduct = async (id: number): Promise<Product> => {
 
 export const fetchReviews = async (productId: number): Promise<Review[]> => {
   try {
+    await new Promise((resolve) => setTimeout(resolve, 800)); // Delay buatan untuk memunculkan loading page
     const response = await fetch(`${BASE_URL}/products/${productId}/reviews`);
     if (!response.ok) {
       throw new Error("Failed to fetch reviews");

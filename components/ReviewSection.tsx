@@ -24,7 +24,7 @@ export default async function ReviewSection(props:{productId:number, productRati
 					productName={props.productName} productBrand={props.productBrand} Review={Review[0]}
 					totalReview={Review.length} backButton={false} />
 					<div className='flex justify-start items-center'>
-						<Link href={`/products/${props.productId}/reviews`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+						<Link href={`/products/${props.productId}/reviews`} prefetch={false} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
 							Browse All Reviews
 						</Link>
 					</div>

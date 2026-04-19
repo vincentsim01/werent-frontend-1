@@ -25,9 +25,18 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-0 md:p-4 overflow-y-auto">
+    <div 
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-0 md:p-4 overflow-y-auto"
+      onClick={(e) => {
+        e.stopPropagation();
+        onClose();
+      }}
+    >
       {/* Container */}
-      <div className="relative bg-[#F9F9F9] md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
+      <div 
+        className="relative bg-[#F9F9F9] md:bg-white w-full h-full md:h-auto md:max-w-[1000px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row"
+        onClick={(e) => e.stopPropagation()}
+      >
         
         {/* Mobile Header (Back Button) */}
         <div className="md:hidden flex items-center p-6 bg-white shrink-0">
