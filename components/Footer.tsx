@@ -2,9 +2,11 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import {useRouter} from 'next/navigation';
 
 export default function Footer() {
   const year = new Date().getFullYear();
+  const router = useRouter();
 
   return (
     <footer className="bg-[var(--werent-green-1)] text-white h-[80vh] md:h-[50vh]">
@@ -20,6 +22,7 @@ export default function Footer() {
                   width={200}
                   height={100}
                   className="object-contain hover:scale-105 hover:rotate-2 transition-transform duration-200 cursor-pointer "
+                  onclick={()=>router.push("/")}
                 />
               </Link>
             </div>
@@ -33,20 +36,20 @@ export default function Footer() {
             <h3 className="text-lg font-semibold mb-4">Help</h3>
             <ul className="space-y-2">
               <li>
-                <a
-                  href="#"
+                <div
+                  onClick={()=>router.push("/privacy-policy")}
                   className="text-sm hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
                 >
                   Privacy Policy
-                </a>
+                </div>
               </li>
               <li>
-                <a
-                  href="#"
+                <div
+                  onClick={()=>router.push("/FAQ")}
                   className="text-sm hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
                 >
                   FAQ
-                </a>
+                </div>
               </li>
             </ul>
           </div>
@@ -91,7 +94,7 @@ export default function Footer() {
           {/* Connect With Us */}
           <div className="text-center bg-[var(--werent-green-1)]">
             <h3 className="text-lg font-semibold mb-4">Connect With Us</h3>
-            <div className="flex justify-center space-x-3">
+            <div className="flex justify-center space-x-3" onClick={()=>router.push("/social")}>
               <img
                 src="/facebookwhite.png"
                 alt="Facebook"
