@@ -20,6 +20,21 @@ export default async function AllReviews({
 	const products : Product = await fetchProduct(Number(id))
 	const reviews = products.reviews ?? [];
 
+	if (reviews.length === 0 || allreview.length === 0) {
+		return (
+			<div className="mx-auto w-full xl:w-[1280px] flex flex-col justify-center gap-2 px-10 lg:px-30 mb-5">
+				<h2 className="text-2xl font-bold text-[#2C2C2C]">No Reviews Yet</h2>
+				<p className="text-[#505050]">Be the first to review this product!</p>
+						<div className='md:flex md:justify-start md:items-center'>
+							<Link href={`/AddReview`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+								Add Review
+							</Link>
+						</div>
+			</div>
+		);
+	}
+
+
 	type MaxReview = {
 	value: number;
 	index: number;

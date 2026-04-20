@@ -12,7 +12,16 @@ export default async function ReviewSection(props:{productId:number, productRati
 	const reviews = Product.reviews ?? [];
 	if (reviews.length === 0) {
 		return (
-			<div>No reviews yet. Be the first to review this product!</div>
+			<div className='mt-2 mb-2 p-2 h-[200px]'>
+				<h2 className="text-2xl font-bold text-[#2C2C2C]">No Reviews Yet</h2>
+				<p className="text-[#505050]">Be the first to review this product!</p>
+				<br></br>
+					<div className='md:flex md:justify-start md:items-center'>
+						<Link href={`/AddReview`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+							Add Review
+						</Link>
+					</div>
+			</div>
 		);
 	}
 
@@ -44,6 +53,7 @@ const maxReview = reviews.reduce<MaxReview>(
 					totalReview={reviews.length} backButton={false} />
 
 					{bestReview && <ReviewCard Review ={bestReview} showPicture={true}/>}
+					<br></br>
 					<div className='flex justify-start items-center'>
 						<Link href={`/products/${props.productId}/reviews`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
 							Browse All Reviews
