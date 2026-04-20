@@ -51,16 +51,9 @@ export default async function AllReviews({
 								className="rounded-2xl px-4 py-8 sm:px-6 sm:py-10"
 								>
 									<div className="flex flex-col gap-3">
-										{/* {allreview.map((item) => {
-										return(
-											<div key={item.id}>
-												<ReviewCard Review={item} showPicture={true}/>
-											</div>
-										)
-									})} */}
 									    <ReviewsInfiniteList
 											reviews={reviews}
-											pageSize={reviews.length <= 10 ? 2 : 10}
+											pageSize={reviews.length <= 3  ? 2 : 3}
 										/>
 									</div>
 							</section>

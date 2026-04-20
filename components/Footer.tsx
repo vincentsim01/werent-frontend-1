@@ -37,7 +37,7 @@ export default function Footer() {
               <li>
                 <div
                   onClick={()=>router.push("/privacy-policy")}
-                  className="text-sm hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
+                  className="text-sm hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 cursor-pointer hover:underline"
                 >
                   Privacy Policy
                 </div>
@@ -45,7 +45,7 @@ export default function Footer() {
               <li>
                 <div
                   onClick={()=>router.push("/FAQ")}
-                  className="text-sm hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
+                  className="text-sm hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors cursor-pointer duration-200 hover:underline"
                 >
                   FAQ
                 </div>
@@ -125,24 +125,24 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center space-y-2 md:space-y-0 text-xs text-[var(--werent-font-4)]">
             <span>© {year} WeRent. All rights reserved.</span>
             <div className="flex space-x-6">
-              <a
-                href="#"
-                className="hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
+              <div
+                onClick={()=>router.push("/terms-of-service")}
+                className="hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] cursor-pointer transition-colors duration-200 hover:underline"
               >
                 Terms of Service
-              </a>
-              <a
-                href="#"
-                className="hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
+              </div>
+              <div
+                onClick={()=>router.push("/privacy-policy")}
+                className="hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] cursor-pointer transition-colors duration-200 hover:underline"
               >
                 Privacy Policy
-              </a>
-              <a
-                href="#"
-                className="hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] transition-colors duration-200 hover:underline"
+              </div>
+              <div
+                 onClick={()=>router.push("/sitemap")}
+                className="hover:text-[var(--werent-figma-page)] active:text-[var(--werent-green-2)] cursor-pointer transition-colors duration-200 hover:underline"
               >
                 Sitemap
-              </a>
+              </div>
             </div>
           </div>
         </div>
