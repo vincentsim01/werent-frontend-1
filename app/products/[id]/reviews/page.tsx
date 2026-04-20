@@ -41,7 +41,7 @@ export default async function AllReviews({
 						<div className="py-5">
 							<ReviewSummary productId={Number(id)} productRating={products.rating}
 							productName={products.name} productBrand={products.brand}
-							totalReview={reviews.length} backButton={true} Review={maxReview.review}/>
+							totalReview={reviews.length} backButton={true}/>
 						</div>
 					</div>
 					<div>

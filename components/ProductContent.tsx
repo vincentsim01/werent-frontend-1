@@ -6,8 +6,8 @@ import Link from "next/link"
 export default async function ProductContent({ id } : { id: number}) {
     const product = await fetchProduct(id);
     const formattedPrice = new Intl.NumberFormat("id-ID").format(product.price);
-  const allreviewRaw = await fetchReviews(Number(id));
-  const allreview = allreviewRaw.data;
+    const allreviewRaw = await fetchReviews(Number(id));
+    const allreview = allreviewRaw.data;
     const averageRating = allreview.reduce((acc, item) => acc + item.rating, 0) / allreview.length;
 
     return (

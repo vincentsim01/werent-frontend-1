@@ -3,8 +3,6 @@
 import React, { useState } from 'react'
 import Stars from './Stars'
 import Link from 'next/link'
-import ReviewModal from './ReviewModal'
-// import {Review} from "@/types"
 
 type ReviewSum = {
   productId : number,
@@ -12,52 +10,13 @@ type ReviewSum = {
   productName : string,
   productBrand : string,
   totalReview : number,
-  backButton : boolean,
-  Review : Review
+  backButton : boolean
 }
 
-// type Review = {
-//     id : number
-//     reviewerName : string,
-//     rating : number,
-//     numUpvotes: number,
-//     title: string,
-//     description: string,
-//     attachmentUrl :string,
-//     createdAt? : Date
-// }
 
-
-type Review = {
-  id: number;
-  title: string;
-  reviewerName: string;
-  productId: number;
-  rating: number;
-  numUpvotes: number;
-  description: string;
-  attachmentUrl: string;
-  createdAt?: Date;
-}
-
-type ReviewProps = {
-    Review? : Review,
-    showPicture? : boolean
-}
-
-function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton, Review}:ReviewSum) {
-
-  const [isReviewOpen, setIsReviewOpen] = useState(false);
-
-	const normalizedReview = {
-		...Review,
-        createdAt: Review.createdAt
-            ? new Date(Review.createdAt).toISOString()
-            : undefined,
-	};
+function ReviewSummary({productId, productRating, productName, productBrand, totalReview, backButton}:ReviewSum) {
   return (
     <div>
-      {/* <ReviewModal isOpen={isReviewOpen} onClose={() => setIsReviewOpen(false)} review={normalizedReview as any} /> */}
         <div className='flex items-center'>
           <Link href={`/products/${productId}`} className={`${backButton ? 'block' : 'hidden'} flex items-center cursor-pointer`}>
             <svg className='size-6' xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor">
@@ -72,13 +31,13 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
         </div>
         
 
-        <section className='flex gap-2 items-center ' onClick={() => setIsReviewOpen(true)}>
-            <p className='font-size-3 ' onClick={() => setIsReviewOpen(true)}>{productRating}</p>
-            <div className='flex' onClick={() => setIsReviewOpen(true)}>
+        <section className='flex gap-2 items-center '>
+            <p className='font-size-3 '>{productRating}</p>
+            <div className='flex'>
                 <Stars rating={productRating}/>
             </div>
         </section>
-        <p onClick={() => setIsReviewOpen(true)}>{totalReview} Reviews for {productName} by {productBrand}</p>
+        <p>{totalReview} Reviews for {productName} by {productBrand}</p>
     </div>
   )
 }
