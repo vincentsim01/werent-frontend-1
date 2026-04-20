@@ -32,7 +32,7 @@ function ReviewSummary({productId, productRating, productName, productBrand, tot
         
 
         <section className='flex gap-2 items-center '>
-            <p className='font-size-3 '>{productRating}</p>
+            <p className='font-size-3 '>{productRating.toFixed(2)}</p>
             <div className='flex'>
                 <Stars rating={productRating}/>
             </div>
