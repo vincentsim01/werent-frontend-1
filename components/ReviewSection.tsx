@@ -12,7 +12,7 @@ export default async function ReviewSection(props:{productId:number, productRati
 	const reviews = Product.reviews ?? [];
 	if (reviews.length === 0) {
 		return (
-			<div className='mt-2 mb-2 p-2 h-[200px]'>
+			<div className='mt-4 mb-2 p-2 h-[200px]'>
 				<h2 className="text-2xl font-bold text-[#2C2C2C]">No Reviews Yet</h2>
 				<p className="text-[#505050]">Be the first to review this product!</p>
 				<br></br>
