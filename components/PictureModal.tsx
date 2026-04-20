@@ -30,19 +30,19 @@ export default function PictureModal({ isOpen, onClose, review }: PictureModalPr
       <div className="relative bg-[#F9F9F9] md:bg-white w-[60%] md:h-auto md:max-w-[500px] md:rounded-[32px] shadow-2xl overflow-hidden transition-all duration-300 flex flex-col md:flex-row">
 
         {/* Mobile Header (Back Button) */}
-        <div className="md:hidden flex items-center p-6 bg-white shrink-0" onClick={onClose}>
+        {/* <div className="md:hidden flex items-center p-6 bg-white shrink-0" onClick={onClose}>
           <button onClick={onClose} className="flex items-center gap-2 text-gray-800 cursor-pointer">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2.5} stroke="currentColor" className="w-5 h-5">
               <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
             </svg>
             <span className="font-semibold text-lg" style={{ fontFamily: 'Raleway, sans-serif' }}>See Other Reviews</span>
           </button>
-        </div>
+        </div> */}
 
         {/* Close Button Desktop */}
         <button 
           onClick={onClose}
-          className="p-5 cursor-pointer md:block absolute right-8 top-8 z-20 text-gray-400 hover:text-gray-600 transition-colors bg-white/50 hover:bg-white rounded-full p-1 shadow-sm"
+          className="p-5 cursor-pointer md:block absolute right-1 top-1 md:right-8 md:top-8 z-20 text-gray-400 hover:text-gray-600 transition-colors bg-white hover:bg-white/80 rounded-full p-1 shadow-sm"
         >
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="cursor-pointer w-4 h-4md:w-8 md:h-8">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
