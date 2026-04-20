@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Werent Frontend
 
-## Getting Started
+🔗 Live Demo: https://werent-frontend-1.vercel.app/
 
-First, run the development server:
+Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Werent is a frontend project focused on building a dynamic and user-friendly product review experience. The application allows users to explore products, view detailed information, and interact with reviews—from featured top reviews to a full review listing with smooth infinite scrolling.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Features
+🏠 All Products Page
+- Browse a list of products
+- Navigate to individual product detail pages
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+📦 Product Detail Page
+- View product information:
+    - Brand
+    - Size
+    - Price
+    - Description
+    - Ratings & reviews
+- Interactive image carousel
+- Click to open Product Modal
+- View Top Review
+- See total number of reviews
+- Navigate to All Reviews Page
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+⭐ Reviews System
+- Highlighted Top Review on product page
+- Dedicated All Reviews Page
+- Cursor-based pagination
+- Infinite scrolling (lazy loading)
+- Click on a review or image to open Review Modal
 
-## Learn More
+🔍 Modals
+- Product Modal (from carousel images)
+- Review Modal (from review or image click)
 
-To learn more about Next.js, take a look at the following resources:
+⭐ Loading Screen
+⭐ Not Found
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Tech Stack
+- Framework: Next.js
+- Library: React
+- Language: TypeScript
+- Styling: Tailwind CSS
+- Lazy Loading / Infinite Scroll: Sentinel (Intersection Observer)
+- Version Control: GitHub
+- Deployment: Vercel
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Project Structure (Simplified)
 
-## Deploy on Vercel
+/app
+  /products     # All Products page
+    /[id]
+      page.tsx        # Product detail page
+        /reviews
+            page.tsx          # All reviews page
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+/components
+  ReviewCard.tsx
+  ReviewModal.tsx
+  ProductModal.tsx
+  Carousel.tsx
+  ReviewsInfiniteList
+  Stars
+  ReviewSummary
+  ReviewCard
+  SizeSelector
+  Header
+  Footer
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+/services
+  index.ts   
+  
+User Flow
+- User lands on Home Page
+- Clicks on a product → navigates to Product Detail Page
+- Views:
+    - Product details
+    - Image carousel (with modal)
+    - Top review
+- Clicks "View All Reviews"
+- Redirected to All Reviews Page
+- Scrolls to load more reviews (infinite scroll)
+- Clicks a review → opens Review Modal      
+
+
+Key Concepts Implemented
+- Cursor-based pagination
+- Infinite scrolling using Intersection Observer (Sentinel)
+- Component-based architecture
+- Modal state management
+- Dynamic routing with Next.js     # Fetch product & review data
+
+
+Getting Started
+Installation
+
+- git clone https://github.com/your-repo/werent-frontend-1.git
+- cd werent-frontend-1
+- npm install
+
+Run Development Server
+
+- npm run dev
+
+Open http://localhost:3000
+ to view it in your browser.
+
+
+Deployment
+
+The project is deployed on Vercel:
+
+👉 https://werent-frontend-1.vercel.app/
+
+Future Improvements
+- Improve accessibility (ARIA, keyboard navigation)
+- Add filtering & sorting for reviews
+= Optimize performance with caching strategies
