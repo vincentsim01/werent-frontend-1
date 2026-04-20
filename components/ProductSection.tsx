@@ -12,7 +12,7 @@ export default async function ProductSection({ productId }: { productId: number 
             <div className="w-full  || p-2">
                 <div className="flex-col gap-2">
                     <Breadcrumbs productName={product.name} />
-                    <div className="flex flex-col lg:flex-row gap-2">
+                    <div className="flex flex-col lg:flex-row gap-2 pt-5">
                         <div className="w-full lg:w-2/3">
                             <Carousel images={product.imageUrls}/>
                         </div>

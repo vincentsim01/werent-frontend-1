@@ -31,6 +31,10 @@ const maxReview = reviews.reduce<MaxReview>(
   },
   { value: -Infinity, index: 0, review: reviews[0] }
 );
+
+	const bestReview : Review | null = Review.length
+								? Review.reduce((prev, current)=> current.numUpvotes > prev.numUpvotes ? current : prev)
+								: null
 	return (
 		<div>
 			<div className="w-full mb-5|| p-2">
@@ -38,7 +42,8 @@ const maxReview = reviews.reduce<MaxReview>(
 					<ReviewSummary productId={props.productId} productRating={props.productRating}
 					productName={props.productName} productBrand={props.productBrand}
 					totalReview={reviews.length} backButton={false} />
-					<ReviewCard Review={maxReview.review} showPicture={true}/>
+
+					{bestReview && <ReviewCard Review ={bestReview} showPicture={true}/>}
 					<div className='flex justify-start items-center'>
 						<Link href={`/products/${props.productId}/reviews`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
 							Browse All Reviews

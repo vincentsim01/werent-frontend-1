@@ -41,6 +41,7 @@ export default function RootLayout({
 			<body className="min-h-full flex flex-col">
 				<div className="sticky top-0 z-999 w-full ||">
 					<Header />
+					<br/>
 				</div>
 				{children}
 				<div className="hidden lg:block">
