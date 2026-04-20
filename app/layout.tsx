@@ -25,9 +25,9 @@ export const metadata: Metadata = {
 	title: "WeRent",
 	description: "Best place to rent high-quality dress",
 	  icons: {
-		icon: "/favicon.PNG",
-		shortcut: "/favicon.PNG",
-		apple: "/favicon.PNG",
+		icon: "/werent-favicon.svg",
+		shortcut: "/werent-favicon.svg",
+		apple: "/werent-favicon.svg",
   }
 };
 

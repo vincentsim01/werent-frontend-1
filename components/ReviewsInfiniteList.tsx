@@ -121,10 +121,10 @@ export default function ReviewsInfiniteList({
                 className="inline-block size-8 animate-spin rounded-full border-2 border-neutral-300 border-t-neutral-600"
                 aria-hidden
               />
-              <span>Memuat review…</span>
+              <span>Loading review…</span>
             </>
           ) : (
-            <span>Gulir ke bawah untuk memuat lebih banyak</span>
+            <span>Scroll down to view more reviews</span>
           )}
         </div>
       ) : null}
