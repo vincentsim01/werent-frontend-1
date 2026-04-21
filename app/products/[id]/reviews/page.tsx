@@ -26,7 +26,7 @@ export default async function AllReviews({
 				<h2 className="text-2xl font-bold text-[#2C2C2C]">No Reviews Yet</h2>
 				<p className="text-[#505050]">Be the first to review this product!</p>
 						<div className='md:flex md:justify-start md:items-center'>
-							<Link href={`/AddReview`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+							<Link href={`/products/${id}/reviews/add`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
 								Add Review
 							</Link>
 						</div>
@@ -62,7 +62,7 @@ export default async function AllReviews({
 							totalReview={reviews.length} backButton={true}/>
 						</div>
 						<div className='md:flex md:justify-end md:items-center'>
-							<Link href={`/AddReview`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+							<Link href={`/products/${id}/reviews/add`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
 								Add Review
 							</Link>
 						</div>
