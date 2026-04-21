@@ -92,10 +92,10 @@ export const createReview = async (review: Review): Promise<Review> => {
   }
 };
 
-export const addUpvotes = async (id: number): Promise<Review> => {
+export const addUpvotes = async (reviewId: number, productId: number): Promise<Review> => {
   try {
-    const response = await fetch(`${BASE_URL}/reviews/${id}/upvote`, {
-      method: "PUT",
+    const response = await fetch(`${BASE_URL}/products/${productId}/reviews/${reviewId}/upvote`, {
+      method: "PATCH",
     });
 
     if (!response.ok) {
