@@ -73,16 +73,19 @@ export const fetchReview = async (id: number): Promise<Review> => {
 // EXTRA MILES =========================
 export const createReview = async (review: Review): Promise<Review> => {
   try {
-    const response = await fetch(`${BASE_URL}/reviews`, {
+    const { id, numUpvotes, createdAt, ...reviewPayload } = review;
+    const response = await fetch(`${BASE_URL}/products/${review.productId}/reviews`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(review),
+      body: JSON.stringify(reviewPayload),
     });
 
     if (!response.ok) {
-      throw new Error("Failed to create review");
+      const errorText = await response.text();
+      console.error("Backend error response:", errorText);
+      throw new Error(`Failed to create review: ${errorText}`);
     }
 
     return response.json();

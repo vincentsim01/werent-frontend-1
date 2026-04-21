@@ -17,7 +17,7 @@ export default async function ReviewSection(props:{productId:number, productRati
 				<p className="text-[#505050]">Be the first to review this product!</p>
 				<br></br>
 					<div className='md:flex md:justify-start md:items-center'>
-						<Link href={`/AddReview`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
+						<Link href={`/products/${props.productId}/reviews/add`} className='bg-[var(--werent-green-2)] rounded-3xl pl-5 pr-5 pt-3 pb-3 text-white md:w-[20%] w-full text-center hover:opacity-60 transition-opacity duration-200'>
 							Add Review
 						</Link>
 					</div>
