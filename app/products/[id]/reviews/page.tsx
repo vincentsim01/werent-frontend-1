@@ -55,7 +55,7 @@ export default async function AllReviews({
 	return (
 		<div className="mx-auto w-full xl:w-[1280px] flex flex-col justify-center gap-2 px-10 lg:px-30">
 				<div className="flex flex-col gap-3 relative">
-					<div className="sticky left-0 top-10 md:top-20 bg-[#f3f3f3] w-full pb-5">
+					<div className="sticky z-50 left-0 top-10 md:top-20 bg-[#f3f3f3] w-full pb-5">
 						<div className="py-5">
 							<ReviewSummary productId={Number(id)} productRating={products.rating}
 							productName={products.name} productBrand={products.brand}
