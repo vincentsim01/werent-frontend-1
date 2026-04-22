@@ -6,6 +6,7 @@ import Link from "next/link"
 export default async function ProductContent({ id } : { id: number}) {
     const product = await fetchProduct(id);
     const formattedPrice = new Intl.NumberFormat("id-ID").format(product.price);
+    const formattedRating = Number (product.rating.toFixed(1) ?? 0);
 
     return (
         <div>
@@ -31,7 +32,7 @@ export default async function ProductContent({ id } : { id: number}) {
                     </h3>
                     <div className="flex justify-start gap-3">
                         <div>
-                            {product.rating}
+                            {formattedRating}
                         </div>
                         <Stars rating={product.rating}/>
                     </div>
