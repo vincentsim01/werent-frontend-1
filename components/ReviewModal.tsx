@@ -45,7 +45,7 @@ export default function ReviewModal({ isOpen, onClose, review }: ReviewModalProp
                 <img 
                   src={review.attachmentUrl} 
                   alt="Review attachment" 
-                  className="w-[100%] md:h-[60vh] md:w-[90%] md:object-cover"
+                  className="w-[100%] h-[40vh] md:h-[60vh] md:w-[90%] object-contain md:object-cover"
                 /> :
                   <img 
                     src="/user.png"

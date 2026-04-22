@@ -44,7 +44,7 @@ function ReviewCard({Review, showPicture}:ReviewProps) {
             />
 
             <section className='flex justify-between cursor-pointer'>
-                <p className='font-size-3'>{Review.reviewerName}</p>
+                <p className='font-size-3' onClick={() => setIsReviewOpen(true)}>{Review.reviewerName}</p>
                 <div className='flex' onClick={() => upvotes(Review.id, Review.productId)}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--werent-green-1)"
                         className={`size-6 ${isActive ? "animate-bounce" : ""}`}>
