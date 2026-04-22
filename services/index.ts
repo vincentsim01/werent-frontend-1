@@ -42,9 +42,26 @@ export const fetchProduct = async (id: number): Promise<Product> => {
 
 export const fetchReviews = async (
   productId: number,
+  options?: {
+    limit?: number;
+    cursor?: number;
+  },
 ): Promise<ResFetchReviewsByProductId> => {
   try {
-    const response = await fetch(`${BASE_URL}/products/${productId}/reviews`);
+    const params = new URLSearchParams();
+    if (typeof options?.limit === "number") {
+      params.set("limit", String(options.limit));
+    }
+    if (typeof options?.cursor === "number") {
+      params.set("cursor", String(options.cursor));
+    }
+
+    const queryString = params.toString();
+    const url = queryString
+      ? `${BASE_URL}/products/${productId}/reviews?${queryString}`
+      : `${BASE_URL}/products/${productId}/reviews`;
+
+    const response = await fetch(url);
     if (!response.ok) {
       throw new Error("Failed to fetch reviews");
     }

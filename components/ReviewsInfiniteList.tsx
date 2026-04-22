@@ -2,113 +2,129 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import ReviewCard from "@/components/ReviewCard";
-import type { Review } from "@/types";
+import type { ResFetchReviewsByProductId, Review } from "@/types";
 
-const DEFAULT_PAGE_SIZE = 8;
+const DEFAULT_PAGE_SIZE = 3;
 const PREFETCH_BELOW_PX = 160;
-/**
- * Jeda minimum saat "memuat" agar indikator terlihat.
- * Setelah ada fetch API sungguhan, ganti dengan durasi request (tetap pakai isLoading).
- */
-const MIN_LOADING_MS = 450;
 
 type Props = {
-  reviews: Review[];
+  productId: number;
+  initialReviews: Review[];
+  initialHasNextPage: boolean;
+  initialNextCursor: number | null;
   pageSize?: number;
 };
 
 export default function ReviewsInfiniteList({
-  reviews,
+  productId,
+  initialReviews,
+  initialHasNextPage,
+  initialNextCursor,
   pageSize = DEFAULT_PAGE_SIZE,
 }: Props) {
-  const [visibleCount, setVisibleCount] = useState(() =>
-    Math.min(pageSize, reviews.length),
-  );
+  const [reviews, setReviews] = useState<Review[]>(initialReviews);
+  const [hasNextPage, setHasNextPage] = useState(initialHasNextPage);
+  const [nextCursor, setNextCursor] = useState<number | null>(initialNextCursor);
   const [isLoading, setIsLoading] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const sentinelRef = useRef<HTMLDivElement | null>(null);
-  const visibleCountRef = useRef(visibleCount);
-  const reviewsLengthRef = useRef(reviews.length);
   const loadingRef = useRef(false);
-  /**
-   * Setelah satu batch selesai, tunggu gestur scroll/wheel lagi
-   * supaya tidak memuat semua review dalam satu rangkaian observer.
-   */
-  const mayLoadMore = useRef(false);
+  const mayLoadMoreRef = useRef(false);
 
-  useEffect(() => {
-    visibleCountRef.current = visibleCount;
-  }, [visibleCount]);
-
-  useEffect(() => {
-    reviewsLengthRef.current = reviews.length;
-  }, [reviews.length]);
-
-  const hasMore = visibleCount < reviews.length;
-
-  const tryLoadMore = useCallback(async () => {
+  const loadMore = useCallback(async () => {
     if (loadingRef.current) return;
-    if (visibleCountRef.current >= reviewsLengthRef.current) return;
+    if (!hasNextPage) return;
+    if (nextCursor === null) return;
 
     loadingRef.current = true;
-    mayLoadMore.current = false;
+    mayLoadMoreRef.current = false;
     setIsLoading(true);
+    setLoadError(null);
 
-    await new Promise((r) => setTimeout(r, MIN_LOADING_MS));
+    try {
+      const response = await fetch(
+        `/api/products/${productId}/reviews?limit=${pageSize}&cursor=${nextCursor}`,
+      );
+      if (!response.ok) {
+        throw new Error("Failed to load reviews");
+      }
+      const payload = (await response.json()) as ResFetchReviewsByProductId;
 
-    setVisibleCount((c) => Math.min(c + pageSize, reviewsLengthRef.current));
-    setIsLoading(false);
-    loadingRef.current = false;
-  }, [pageSize]);
+      setReviews((prev) => [...prev, ...payload.data]);
+      setHasNextPage(payload.pagination.hasNextPage);
+      setNextCursor(payload.pagination.nextCursor);
+    } catch {
+      setLoadError("Failed to load more reviews. Please try again.");
+    } finally {
+      setIsLoading(false);
+      loadingRef.current = false;
+    }
+  }, [hasNextPage, nextCursor, pageSize, productId]);
+
+  const tryLoadFromViewport = useCallback(() => {
+    if (!mayLoadMoreRef.current) return;
+    if (!hasNextPage) return;
+    if (nextCursor === null) return;
+    if (loadingRef.current) return;
+
+    const node = sentinelRef.current;
+    if (!node) return;
+
+    const rect = node.getBoundingClientRect();
+    if (rect.top > window.innerHeight + PREFETCH_BELOW_PX) return;
+
+    void loadMore();
+  }, [hasNextPage, loadMore, nextCursor]);
 
   useEffect(() => {
-    let raf = 0;
-
-    const considerLoad = () => {
-      if (loadingRef.current) return;
-      if (visibleCountRef.current >= reviewsLengthRef.current) return;
-      if (!mayLoadMore.current) return;
-
-      const node = sentinelRef.current;
-      if (!node) return;
-
-      const rect = node.getBoundingClientRect();
-      if (rect.top > window.innerHeight + PREFETCH_BELOW_PX) return;
-
-      void tryLoadMore();
+    const onScrollIntent = () => {
+      mayLoadMoreRef.current = true;
+      tryLoadFromViewport();
     };
 
-    const onScrollLike = () => {
-      mayLoadMore.current = true;
-      cancelAnimationFrame(raf);
-      raf = requestAnimationFrame(considerLoad);
-    };
-
-    window.addEventListener("scroll", onScrollLike, { passive: true });
-    window.addEventListener("wheel", onScrollLike, { passive: true });
-    window.addEventListener("touchmove", onScrollLike, { passive: true });
-    window.addEventListener("resize", onScrollLike, { passive: true });
+    window.addEventListener("scroll", onScrollIntent, { passive: true });
+    window.addEventListener("wheel", onScrollIntent, { passive: true });
+    window.addEventListener("touchmove", onScrollIntent, { passive: true });
 
     return () => {
-      cancelAnimationFrame(raf);
-      window.removeEventListener("scroll", onScrollLike);
-      window.removeEventListener("wheel", onScrollLike);
-      window.removeEventListener("touchmove", onScrollLike);
-      window.removeEventListener("resize", onScrollLike);
+      window.removeEventListener("scroll", onScrollIntent);
+      window.removeEventListener("wheel", onScrollIntent);
+      window.removeEventListener("touchmove", onScrollIntent);
     };
-  }, [tryLoadMore]);
+  }, [tryLoadFromViewport]);
 
-  const visible = reviews.slice(0, visibleCount);
+  useEffect(() => {
+    if (!hasNextPage) return;
+    if (nextCursor === null) return;
+    const node = sentinelRef.current;
+    if (!node) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (!entries[0]?.isIntersecting) return;
+        if (!mayLoadMoreRef.current) return;
+        void loadMore();
+      },
+      { root: null, rootMargin: "240px 0px", threshold: 0 },
+    );
+
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, [hasNextPage, nextCursor, loadMore]);
 
   return (
     <>
       <div className="flex flex-col gap-3">
-        {visible.map((item) => (
+        {reviews.map((item) => (
           <div key={item.id}>
             <ReviewCard Review={item} showPicture={true} />
           </div>
         ))}
       </div>
-      {hasMore ? (
+      {loadError ? (
+        <div className="py-4 text-center text-sm text-red-500">{loadError}</div>
+      ) : null}
+      {hasNextPage ? (
         <div
           ref={sentinelRef}
           className="flex min-h-14 flex-col items-center justify-center gap-2 py-6 text-sm text-neutral-500"
@@ -124,7 +140,7 @@ export default function ReviewsInfiniteList({
               <span>Loading review…</span>
             </>
           ) : (
-            <span>Scroll down to view more reviews</span>
+            <span>Scroll down to load more reviews</span>
           )}
         </div>
       ) : null}
