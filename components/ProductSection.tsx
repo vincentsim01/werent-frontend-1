@@ -1,7 +1,7 @@
 import Breadcrumbs from "./Breadcrumbs";
 import Carousel from "./Carousel";
 import ProductContent from "./ProductContent";
-import {fetchProduct} from '@/services/index';
+import { fetchProduct } from "@/services/index";
 
 export default async function ProductSection({ productId }: { productId: number }) {
     const product = await fetchProduct(productId);
