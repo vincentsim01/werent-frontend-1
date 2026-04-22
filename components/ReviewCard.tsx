@@ -6,6 +6,7 @@ import ReviewModal from './ReviewModal'
 import PictureModal from "./PictureModal";
 import { Review } from '@/types';
 import { addUpvotes } from '@/services';
+import ReadMore from './ReadMore';
 
 type ReviewProps = {
     Review : Review,
@@ -58,10 +59,11 @@ function ReviewCard({Review, showPicture}:ReviewProps) {
             <hr className='border-[var(--werent-green-1)]'/>
 
             <section className='flex flex-col lg:flex-row justify-between lg:items-center gap-2'>
-                <div  onClick={() => setIsReviewOpen(true)} className='cursor-pointer'>
+                <div  className=''>
                     <Stars rating={Review.rating}/>
-                    <p className='font-size-3'>{Review.title}</p>
-                    <p className='font-size-4'>{Review.description}</p>
+                    <p  onClick={() => setIsReviewOpen(true)} className='cursor-pointer font-size-3'>{Review.title}</p>
+                    <ReadMore text={Review.description} />
+                    {/* <p className='font-size-4'>{Review.description}</p> */}
                 </div>
 
                 {Review.attachmentUrl ?  
