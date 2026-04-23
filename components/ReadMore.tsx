@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function ReadMore({ text }) {
+export default function ReadMore({ text }: { text: string }) {
   const [expanded, setExpanded] = useState(false);
 
   const limit = 120;
