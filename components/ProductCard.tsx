@@ -1,4 +1,5 @@
 import { Product } from "@/types";
+import Stars from "./Stars";
 
 interface CardProductProps {
   product: Product;
@@ -24,10 +25,14 @@ export default function CardProduct({ product }: CardProductProps) {
         <h3 className="text-[15px] font-medium text-[var(--werent-green-1)] mb-2.5 leading-snug truncate">
           {product.name}
         </h3>
+
         <h3 className="text-[12px] text-[var(--werent-green-1)] mb-2.5 leading-snug truncate">
           {product.brand}
-        </h3>
-
+        </h3> 
+          <div className='flex items-center gap-1'>
+            {product.rating.toFixed(1)}<Stars rating={product.rating} />
+          </div>
+          <br></br>
         {/* Footer */}
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center justify-between">
           <div className="flex items-baseline gap-1">
@@ -38,6 +43,8 @@ export default function CardProduct({ product }: CardProductProps) {
               $ {formattedPrice}
             </span>
           </div>
+          <br></br>
+
           <button
             className="w-full sm:w-auto text-center bg-[var(--werent-green-1)] hover:opacity-60 text-white text-[11px] 
                         rounded uppercase px-3.5 py-1.5 transition-colors duration-200 whitespace-nowrap cursor-pointer"
@@ -46,6 +53,7 @@ export default function CardProduct({ product }: CardProductProps) {
             Rent
           </button>
         </div>
+
       </div>
     </div>
   );

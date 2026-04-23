@@ -7,6 +7,7 @@ export default async function ProductContent({ id } : { id: number}) {
     const product = await fetchProduct(id);
     const formattedPrice = new Intl.NumberFormat("id-ID").format(product.price);
     const formattedRating = Number (product.rating.toFixed(1) ?? 0);
+    const totalReviews = product.reviews?.length || 0;
 
     return (
         <div>
@@ -30,9 +31,13 @@ export default async function ProductContent({ id } : { id: number}) {
                     >
                         $ {formattedPrice}
                     </h3>
-                    <div className="flex justify-start gap-3">
-                        <div>
-                            {formattedRating}
+                    <div className="flex flex-col justify-start gap-3">
+                        <div className='flex items-center'>
+                            {formattedRating}{totalReviews > 0 && (
+                                <span className="text-sm ml-2 text-gray-400">
+                                    {totalReviews} reviews
+                                </span>
+                                )}
                         </div>
                         <Stars rating={product.rating}/>
                     </div>
