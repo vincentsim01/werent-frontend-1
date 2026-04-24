@@ -33,7 +33,7 @@ export default async function ProductContent({ id } : { id: number}) {
                     </h3>
                     <div className="flex flex-col justify-start gap-3">
                         <div className='flex items-center'>
-                            {formattedRating}{totalReviews > 0 && (
+                            {formattedRating.toFixed(1)}{totalReviews > 0 && (
                                 <span className="text-sm ml-2 text-gray-400">
                                     {totalReviews} reviews
                                 </span>
